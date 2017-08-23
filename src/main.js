@@ -13,6 +13,7 @@ import 'element-ui/lib/theme-default/index.css'
 Vue.use(ElementUI)
 
 import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
 Vue.use(mavonEditor)
 
 // 注册一个全局自定义指令 v-focus

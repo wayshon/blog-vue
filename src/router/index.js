@@ -30,6 +30,7 @@ const main = [
   ]
 
 const router = new Router({
+  mode: 'history',
   routes: [...main]
 })
 
