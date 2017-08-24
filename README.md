@@ -29,6 +29,7 @@ App - Auth
                                 - Comment
                                 - Collection
                                 - Star
-    - Article   - Add
+    - Article   - ArticleList
+                - Add
                 - :ArticleId
 ```
