@@ -6,10 +6,10 @@
 
 <script>
   export default {
-    name: 'Auth',
+    name: 'ArticleAdd',
     data() {
       return {
-        msg: 'Auth'
+        msg: 'ArticleAdd'
       }
     }
   }

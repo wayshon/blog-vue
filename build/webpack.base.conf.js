@@ -7,17 +7,10 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-//这里为了添加 mavon-editor 高亮
-var lang = require('highlight.js-async-webpack/src/file.lang.hljs.js');
-var _entry= {
-  app: './src/main.js'
-};
-for (var i = 0; i < lang.length; i++) {
-    _entry[lang[i]] = ['mavon-editor/dist/js/' + lang[i] + '.js']
-}
-
 module.exports = {
-  entry: _entry,
+  entry: {
+    app: './src/main.js'
+  },
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',

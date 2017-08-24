@@ -1,6 +1,10 @@
 <template>
   <div id="app">
     <router-view v-loading.body="Interface.loading.show" class="first-router"></router-view>
+    <footer class="copy-right">
+      <span>Powered By Wayshon.</span>
+      <span>Copyright©2017-2017  All Rights Reserved.</span>
+    </footer>
   </div>
 </template>
 

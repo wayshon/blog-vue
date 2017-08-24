@@ -1,15 +1,15 @@
 <template>
   <div>
-    {{msg}}
+    <router-view />
   </div>
 </template>
 
 <script>
   export default {
-    name: 'Auth',
+    name: 'User',
     data() {
       return {
-        msg: 'Auth'
+        
       }
     }
   }

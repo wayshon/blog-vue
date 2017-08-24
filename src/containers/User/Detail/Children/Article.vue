@@ -1,20 +1,19 @@
 <template>
   <div>
-    
+    {{msg}}
   </div>
 </template>
 
 <script>
-  import {mapActions, mapGetters, mapState, mapMutations} from 'vuex';
   export default {
-    name: 'Detail',
-    data () {
+    name: 'UserArticle',
+    data() {
       return {
-        
+        msg: 'UserArticle'
       }
     },
     mounted() {
-      
+      console.log(11234567876543214567)
     }
   }
 </script>
