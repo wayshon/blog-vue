@@ -4,6 +4,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 // 1级路由
+const NotFound = resolve => require.ensure([], () => {resolve(require('@/containers/NotFound'))}, 'NotFound')
 const Auth = resolve => require.ensure([], () => {resolve(require('@/containers/Auth'))}, 'Auth')
 const Home = resolve => require.ensure([], () => {resolve(require('@/containers/Home'))}, 'Home')
 const User = resolve => require.ensure([], () => {resolve(require('@/containers/User'))}, 'User')
@@ -22,6 +23,11 @@ const UserCollection = resolve => require.ensure([], () => {resolve(require('@/c
 const UserStar = resolve => require.ensure([], () => {resolve(require('@/containers/User/Detail/Children/Star'))}, 'User')
 
 const main = [
+    {
+      path: '/404',
+      name: 'NotFound',
+      component: NotFound
+    },
     {
       path: '/auth',
       name: 'Auth',
@@ -68,7 +74,6 @@ const main = [
     },
     {
       path: '/article',
-      name: 'Article',
       component: Article,
       children: [
         {
@@ -88,10 +93,10 @@ const main = [
         }
       ]
     },
-    // {
-    //   path: '*',
-    //   redirect: '/home'
-    // }
+    {
+      path: '*',
+      redirect: '/404'
+    }
   ]
 
 const router = new Router({

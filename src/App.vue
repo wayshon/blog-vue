@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view v-loading.body="Interface.loading.show" class="first-router"></router-view>
+    <router-view class="first-router" v-loading.body="Interface.loading.show"></router-view>
     <footer class="copy-right">
       <span>Powered By Wayshon.</span>
       <span>Copyright©2017-2017  All Rights Reserved.</span>
