@@ -1,5 +1,12 @@
 <template>
   <div id="app">
+    <header class="header-container">
+      <div class="header-select">
+        <a class="nav-title" @click="goto('/auth')">Sign up</a>
+        <a class="nav-title" @click="goto('/auth')">Log in</a>
+        <a class="nav-title" @click="goto('/article/add')">Add</a>
+      </div>
+    </header>
     <router-view class="first-router" v-loading.body="Interface.loading.show"></router-view>
     <footer class="copy-right">
       <span>Powered By Wayshon.</span>
