@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '@/store'
+import tool from '@/assets/tools/tool'
 
 Vue.use(Router)
 
@@ -29,7 +31,7 @@ const main = [
       component: NotFound
     },
     {
-      path: '/auth',
+      path: '/auth/:type',
       name: 'Auth',
       component: Auth
     },
@@ -102,6 +104,18 @@ const main = [
 const router = new Router({
   mode: 'history',
   routes: [...main]
+})
+
+let authRoutes = ['ArticleAdd'];
+
+router.beforeEach((to, from, next) => {
+  let user = store.state.user.user;
+
+  if (authRoutes.find(v => v === to.name) && tool.isBlank(user.id)) {
+    next('/auth/login');
+  } else {
+    next();
+  }
 })
 
 export default router

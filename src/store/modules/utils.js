@@ -18,16 +18,11 @@ const state = {
       title: '提示',
       content: ''
     }
-  },
-  userInfo: JSON.parse(sessionStorage.getItem('userInfo') || '{"name": "获取中"}')
+  }
 }
 
 // mutations
 const mutations = {
-  USER_INFO(state,payload){
-    sessionStorage.setItem('userInfo', JSON.stringify(payload))
-    state.userInfo = payload;
-  },
   TOAST(state, payload){
     state.Interface.toast = {...state.Interface.toast, ...payload}
   },

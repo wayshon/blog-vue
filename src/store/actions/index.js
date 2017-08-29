@@ -1,5 +1,6 @@
 module.exports = {
   ...require('./utils'),
   ...require('./auth'),
-  ...require('./ui')
+  ...require('./ui'),
+  ...require('./user')
 }
