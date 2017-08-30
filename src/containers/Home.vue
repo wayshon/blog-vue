@@ -12,23 +12,12 @@
     name: 'Home',
     data() {
       return {
-        list: [{
-          id: '1111',
-          userId: 'aaaa',
-          title: 'hahaha',
-          tags: [{name:'八卦新闻'},{name:'篮球'},{name:'天下足球'}],
-          content: '点苍台白露冷冷，幽僻处可有人行？在阅读中最大的乐趣是发现一个又一个人的人生。在文字记录的背后都是具体而又现实的人生。 同样都是文字，在不同的人的手里组合起来，所呈现出来的观感是不同的。在文字的后面，文字讲述'
-        },{
-          id: '2222',
-          userId: 'bbbb',
-          title: 'hahaha',
-          tags: [{name:'八卦新闻'},{name:'天下足球'}],
-          content: '点苍台白露冷冷，幽僻处可有人行？在阅读中最大的乐趣是发现一个又一个人的人生。在文字记录的背后都是具体而又现实的人生。 同样都是文字，在不同的人的手里组合起来，所呈现出来的观感是不同的。在文字的后面，文字讲述'
-        }]
+        list: []
       }
     },
     methods: {
       ...mapActions([
+        'articleList',
         'goto'
       ]),
       cellBgColor(index) {
@@ -49,7 +38,23 @@
             id: obj.id
           }
         })
+      },
+      getList() {
+        this.articleList({
+          // keyword: '',
+          // page: this.page.toString(),
+          // size: this.size.toString(),
+          onsuccess: (body, headers) => {
+            // headers['x-current-page'] ? this.page = +headers['x-current-page'] : null;
+            // headers['x-total'] ? this.total = +headers['x-total'] : null;
+
+            this.list = body.data;
+          }
+        })
       }
+    },
+    mounted() {
+      this.getList();
     }
   }
 </script>

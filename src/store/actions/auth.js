@@ -1,14 +1,15 @@
 module.exports = {
   regist(ctx, param){
-    ctx.dispatch('resource', {
-      url: '/register',
+    ctx.dispatch('xhr', {
+      url: '/user',
       method:'POST',
       body: {
-        userName: param.userName,
+        user_name: param.user_name,
         password: param.password,
-        name: param.name,
+        nick_name: param.nick_name,
         email: param.email,
         mobile: param.mobile,
+        avatar: param.avatar || ''
       },
       onSuccess: body => {
         param.onsuccess ? param.onsuccess(body) : null
@@ -16,38 +17,17 @@ module.exports = {
     })
   },
   login(ctx, param){
-    ctx.dispatch('resource', {
+    ctx.dispatch('xhr', {
       url: '/login',
       method:'POST',
       body: {
-        userName: param.userName,
+        user_name: param.user_name,
         password: param.password
       },
       onSuccess: body => {
         ctx.dispatch('showtoast', {text: '登陆成功', type: 'success'});
         sessionStorage.setItem('session_id', body.data.session_id)
         param.onsuccess ? param.onsuccess(body) : null
-      }
-    })
-  },
-  logout(ctx, param){
-    ctx.dispatch('resource', {
-      url: '/logout',
-      method:'POST',
-      onSuccess: body => {
-        param.onsuccess ? param.onsuccess(body) : null
-      }
-    })
-  },
-  getInfo(ctx, param){
-    ctx.dispatch('resource', {
-      url: '/getInfo',
-      method:'GET',
-      onSuccess: body => {
-        ctx.commit('USER_INFO', body.data)
-      },
-      onFail: data => {
-        ctx.commit('USER_INFO', data)
       }
     })
   }

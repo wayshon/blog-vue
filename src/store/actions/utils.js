@@ -143,72 +143,16 @@ module.exports = {
   //     ctx.dispatch('showtoast', {text: 'Request Error', type: 'error'});
   //   }
   // },
-
-  // resource: (ctx, param) => {
-  //   let headers = param.headers || {};
-  //   if (!param.url.match(/register/) && !param.url.match(/login/) ) {
-  //     headers.Session = sessionStorage.getItem('session_id');
-  //   }
-  //   ctx.commit('LOADING', 1)
-  //   Vue.http({
-  //     url: param.url == '/cos/get_sign' ? '/libra' + param.url : '/virgo' + param.url,
-  //     body: param.body || null,
-  //     headers: headers,
-  //     params: param.params || null,
-  //     method: param.method || "GET",
-  //     timeout: param.timeout || 5000,
-  //     credentials: false,
-  //     emulateHTTP: false,
-  //     emulateJSON: false,
-  //   }).then(
-  //     response => {
-  //       if (+response.body.errcode === 0 || +response.status == 204) {
-  //         param.method != 'GET' && !param.url.match(/getInfo/) && !param.url.match(/login/) && !param.url.match(/\/cos\/get_sign/) ? ctx.dispatch('showtoast',{type: 'success'}) : null
-  //         param.onSuccess ? param.onSuccess(response.body, response.headers) : null
-  //       } else {
-  //         //ctx.dispatch('showtoast', 'errcode:' + response.body.errcode + ';\n errmsg:' + response.body.errmsg);
-  //         ctx.dispatch('showtoast', {text: response.body.errmsg, type:'warning'});
-  //         param.onFail ? param.onFail(response) : null
-  //       }
-  //     }
-  //   ).catch(
-  //     error => {
-  //       //ErrorCallback
-  //       if (error.status === 401) {
-  //         ctx.dispatch('showalert', {
-  //           code: error.status,
-  //           content: '登录失效!'
-  //         });
-  //       } else if (error.status === 400) {
-  //         ctx.dispatch('showtoast', {text: 'Bad Request', type: 'error'});
-  //       } else if (error.status === 404) {
-  //         ctx.dispatch('showtoast', {text: 'Not Found', type: 'error'});
-  //       } else if (error.status === 500) {
-  //         ctx.dispatch('showtoast', {text: 'Internal Server Error', type: 'error'});
-  //       } else {
-  //         // console.log(error)
-  //         ctx.dispatch('showtoast', {text: 'Request Error', type: 'error'});
-  //       }
-  //       if (param.url.match(/getInfo/) && param.onFail) {
-  //         param.onFail({name: '获取失败'})
-  //       }
-  //     }
-  //   ).finally(
-  //     final => {
-  //       ctx.commit('LOADING')
-  //     }
-  //   )
-  // }
   
-  resource: (ctx, param) => {
+  xhr: (ctx, param) => {
     let headers = param.headers || {};
-    if (!param.url.match(/register/) && !param.url.match(/login/) ) {
-      headers.Session = sessionStorage.getItem('session_id');
+    if (param.url.match(/article/) && (param.method === 'POST' || param.method === 'PUT')) {
+      headers.Authorization = localStorage.getItem('Authorization');
     }
     ctx.commit('LOADING', 1)
 
     axios({
-      url: param.url == '/cos/get_sign' ? '/libra' + param.url : '/virgo' + param.url,
+      url: '/api' + param.url,
       method: param.method || "GET",
       baseURL: param.baseURL || null,
       headers: headers,
@@ -218,8 +162,8 @@ module.exports = {
     }).then(
       response => {
         ctx.commit('LOADING')
-        if (+response.data.errcode === 0 || +response.status == 204) {
-          param.method != 'GET' && !param.url.match(/getInfo/) && !param.url.match(/login/) && !param.url.match(/\/cos\/get_sign/) ? ctx.dispatch('showtoast',{type: 'success'}) : null
+        if (+response.data.code === 0 || +response.status == 204) {
+          param.method != 'GET' ? ctx.dispatch('showtoast',{type: 'success'}) : null
           param.onSuccess ? param.onSuccess(response.data, response.headers) : null
         } else {
           ctx.dispatch('showtoast', {text: response.data.errmsg, type:'warning'});
@@ -257,9 +201,6 @@ module.exports = {
         } else {
           // console.log(error)
           ctx.dispatch('showtoast', {text: 'Request Error', type: 'error'});
-        }
-        if (param.url.match(/getInfo/) && param.onFail) {
-          param.onFail({name: '获取失败'})
         }
       }
     )

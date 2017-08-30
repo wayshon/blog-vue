@@ -1,8 +1,6 @@
 
 const state = {
-    user: {
-        id: 666
-    }
+    user: {}
 }
 
 // mutations

@@ -7,7 +7,7 @@
         <article @click="article">
             <div class="cell-title-content">
               <h3 class="cell-title">{{value.title}}</h3>
-              <h5 v-for="(obj ,index) of value.tags" class="cell-label" :style="{borderColor:choose(obj.name)}">{{obj.name}}</h5>
+              <h5 v-for="(obj ,index) of value.tags" class="cell-label" :style="{borderColor:choose(obj)}">{{obj}}</h5>
             </div>
             <p class="cell-content">{{value.content}}</p>
         </article>
