@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="content">
     <div v-for="(obj, index) of list" class="article-cell" :class="cellBgColor(index)">
       <article-cell @header="goUser" @article="goDetail" :value="obj"></article-cell>
     </div>
@@ -54,8 +54,16 @@
   }
 </script>
 <style lang="less" scoped>
+  .content {
+    min-width: 800px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px 50px;
+  }
   .article-cell {
     margin-top: 10px;
+    border-radius: 10px;
   }
   .bg-color-1 {
     background-color: rgb(247, 247, 247);

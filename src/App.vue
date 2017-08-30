@@ -8,6 +8,10 @@
         <a v-show="user.id" class="nav-title" @click="logout">Log out</a>
         <a v-show="user.id" class="nav-title" @click="goto('/article/add')">Add</a>
       </div>
+      <div v-show="$route.name === 'Home' || $route.name === 'NotFound'">
+        <h1 class="header-title">My Blog</h1>
+        <p class="header-sub-title">Word is cheap, show me the money</p>
+      </div>
     </header>
     <router-view class="first-router" v-loading.body="Interface.loading.show"></router-view>
     <footer class="copy-right">

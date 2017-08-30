@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="cell">
         <header @click="header">
             <img src="https://placekitten.com/28/28" />
             <span>隔壁老王</span> - <span>2017-08-25 16:31</span>
@@ -49,12 +49,13 @@
   }
 </script>
 <style lang="less" scoped>
-  .cell-title-content {
-    display: flex;
+  .cell {
+    padding: 10px 10px;
   }
 
-  .cell-title {
-    margin-left: 10px;
+  .cell-title-content {
+    display: flex;
+    padding-top: 10px;
   }
 
   .cell-label {
@@ -68,10 +69,12 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    padding-top: 10px;
   }
 
   .cell-footer {
     display: flex;
+    padding-top: 10px;
   }
 
   .cell-footer-content {
