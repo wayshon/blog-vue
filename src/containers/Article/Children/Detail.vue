@@ -1,16 +1,12 @@
 <template>
-  <div>
+  <div class="content">
     <article v-html="content"></article>
   </div>
 </template>
 
 <script>
 var marked = require('marked');
-marked.setOptions({
-  highlight: function(code) {
-    return require('highlight.js').highlightAuto(code).value;
-  }
-});
+
 import { mapActions, mapGetters, mapState, mapMutations } from 'vuex'
 export default {
   name: 'ArticleDeatil',
@@ -47,3 +43,8 @@ export default {
   }
 }
 </script>
+<style lang="less" scoped>
+  .content {
+    padding: 10px 50px;
+  }
+</style>

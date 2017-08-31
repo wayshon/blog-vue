@@ -5,9 +5,8 @@
       <el-button class="head-btn" @click.native="send">发送</el-button>
     </div>
     <div class="content">
-
+      <mavon-editor :toolbars="toolbarConfig" v-model="content" />
     </div>
-    <mavon-editor :toolbars="toolbarConfig" v-model="content" />
   </div>
 </template>
 
@@ -66,7 +65,7 @@ export default {
     send() {
       this.addArticle({
         title: 'this is title',
-        content: '### this is content ###',
+        content: this.content,
         tags: ['tag1', 'tag2'],
         onsuccess: body => console.log(body)
       })
