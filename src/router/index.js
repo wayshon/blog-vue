@@ -106,16 +106,16 @@ const router = new Router({
   routes: [...main]
 })
 
-let authRoutes = ['ArticleAdd'];
+// let authRoutes = ['ArticleAdd'];
 
-router.beforeEach((to, from, next) => {
-  let user = store.state.user.user;
+// router.beforeEach((to, from, next) => {
+//   let user = store.state.user.user;
 
-  if (authRoutes.find(v => v === to.name) && tool.isBlank(user.id)) {
-    next('/auth/login');
-  } else {
-    next();
-  }
-})
+//   if (authRoutes.find(v => v === to.name) && tool.isBlank(user.id)) {
+//     next('/auth/login');
+//   } else {
+//     next();
+//   }
+// })
 
 export default router

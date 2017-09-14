@@ -12,7 +12,46 @@
     name: 'Home',
     data() {
       return {
-        list: []
+        list: [{
+          "id":"xxxxxxxxxxxxxxxx",
+          "user_id":"xxxxxxxxxxxxxxxx",
+          "nick_name":"xxxxxxxxxxxxxxxx",
+          "title":"ttttt",
+          "content":"xxxxxxxxxxxxxxxx",
+          "tags":[],
+          "reprint_count":10,
+          "read_count":10,
+          "comment_count":10,
+          "praise_count":10,
+          "create_at": "",
+          "update_at": ""
+        },{
+          "id":"xxxxxxxxxxxxxxxx",
+          "user_id":"xxxxxxxxxxxxxxxx",
+          "nick_name":"xxxxxxxxxxxxxxxx",
+          "title":"ttttt",
+          "content":"xxxxxxxxxxxxxxxx",
+          "tags":[],
+          "reprint_count":10,
+          "read_count":10,
+          "comment_count":10,
+          "praise_count":10,
+          "create_at": "",
+          "update_at": ""
+        },{
+          "id":"xxxxxxxxxxxxxxxx",
+          "user_id":"xxxxxxxxxxxxxxxx",
+          "nick_name":"xxxxxxxxxxxxxxxx",
+          "title":"ttttt",
+          "content":"xxxxxxxxxxxxxxxx",
+          "tags":[],
+          "reprint_count":10,
+          "read_count":10,
+          "comment_count":10,
+          "praise_count":10,
+          "create_at": "",
+          "update_at": ""
+        }]
       }
     },
     methods: {
@@ -54,7 +93,7 @@
       }
     },
     mounted() {
-      this.getList();
+      // this.getList();
     }
   }
 </script>

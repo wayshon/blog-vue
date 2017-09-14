@@ -1,12 +1,16 @@
 <template>
   <div id="app">
     <header class="header-container">
-      <div class="header-select">
-        <a v-show="$route.name !== 'Home'" class="nav-title" @click="goto('/home')">Home</a>
-        <a v-show="!user.id" class="nav-title" @click="goto('/auth/register')">Sign up</a>
-        <a v-show="!user.id" class="nav-title" @click="goto('/auth/login')">Log in</a>
-        <a v-show="user.id" class="nav-title" @click="logout">Log out</a>
-        <a v-show="user.id" class="nav-title" @click="goto('/article/add')">Add</a>
+      <div class="nav-banner">
+        <nav>
+          <router-link to="/home">Home</router-link>
+          <router-link to="/auth/register">Sign up</router-link>
+          <router-link to="/auth/login">Log in</router-link>
+          <router-link to="/article/add">Add</router-link>
+          <div class="login-banner">
+            <a @click="logout">Log out</a>
+          </div>
+        </nav>
       </div>
       <div v-show="$route.name === 'Home' || $route.name === 'NotFound'  || $route.name === 'Auth'">
         <h1 class="header-title">My Blog</h1>
