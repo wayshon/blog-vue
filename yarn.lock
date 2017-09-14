@@ -4415,6 +4415,10 @@ ws@^2.3.1:
     safe-buffer "~5.0.1"
     ultron "~1.1.0"
 
+x-base64@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/x-base64/-/x-base64-1.1.0.tgz#ad2c276f0e2520aac751fa291ba357df3a9a7bb9"
+
 xml-char-classes@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/xml-char-classes/-/xml-char-classes-1.0.0.tgz#64657848a20ffc5df583a42ad8a277b4512bbc4d"

@@ -1,12 +1,21 @@
+let base = require('x-base64');
+
+let Authorization = localStorage.getItem('Authorization');
+
+let jwt = Authorization.split('.')[1];
+let decode = base.decode(jwt);
+let userId = JSON.parse(decode).user;
 
 const state = {
-    user: {}
+    user: {
+        id: userId
+    }
 }
 
 // mutations
 const mutations = {
     setUser(state, payload) {
-        state.user = {...payload}
+        state.user = { ...payload }
     }
 }
 
