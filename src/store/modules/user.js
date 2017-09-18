@@ -1,10 +1,10 @@
 let base = require('x-base64');
 
-let Authorization = localStorage.getItem('Authorization');
+// let Authorization = localStorage.getItem('Authorization');
 
-let jwt = Authorization.split('.')[1];
-let decode = base.decode(jwt);
-let userId = JSON.parse(decode).user;
+// let jwt = Authorization.split('.')[1];
+// let decode = base.decode(jwt);
+// let userId = JSON.parse(decode).user;
 
 const state = {
     user: {

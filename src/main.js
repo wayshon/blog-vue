@@ -19,17 +19,9 @@ Vue.use(mavonEditor)
 import VueMarkdown from 'vue-markdown'
 Vue.component('vue-markdown', VueMarkdown);
 
-// 注册一个全局自定义指令 v-focus
-Vue.directive('focus', {
-  // 当绑定元素插入到 DOM 中。
-  inserted: function (el) {
-    // 聚焦元素
-    el.focus()
-  }
-})
-
 // Components
 Vue.component('article-cell', require('./components/ArticleCell.vue'))
+Vue.component('comment', require('./components/Comment.vue'))
 
 
 /* eslint-disable no-new */

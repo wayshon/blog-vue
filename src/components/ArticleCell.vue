@@ -12,7 +12,6 @@
             <!-- <p class="cell-content">{{value.content}}</p> -->
         </article>
         <footer class="cell-footer">
-            <h5 class=""></h5>
             <span>13次阅读</span> <span>13次收藏</span> <span>13次赞</span> <span>13评论</span>
         </footer>
     </div>
