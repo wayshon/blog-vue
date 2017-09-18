@@ -97,7 +97,7 @@ const main = [
     },
     {
       path: '*',
-      redirect: '/404'
+      redirect: '/home'
     }
   ]
 

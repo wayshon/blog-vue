@@ -3,17 +3,28 @@
     <div class="user-info">
       <p>作者：{{detail.nick_name}}</p>
       <div>
-        标签：<span v-for="tag in detail.tags">{{tag}} </span>
+        标签：
+        <span v-for="tag in detail.tags">{{tag}} </span>
       </div>
       <div>
-        <span>阅读{{detail.read_count}}</span> <span>评论{{detail.comment_count}}</span> <span>阅读{{detail.praise_count}}</span>
+        <span>阅读{{detail.read_count}}</span>
+        <span>评论{{detail.comment_count}}</span>
+        <span>阅读{{detail.praise_count}}</span>
       </div>
       <div>
         <span>更新于{{detail.update_at}}</span>
       </div>
+      <el-button type="primary" @click.native="share">分享</el-button>
+      <img v-show="shareUrl" width="200" height="200" :src="shareUrl" />
     </div>
-    <h1>{{detail.title}}</h1>
-    <article v-html="content"></article>
+    <div class="article-content">
+      <h1>{{detail.title}}</h1>
+      <article v-html="content"></article>
+    </div>
+    <div class="comment-content">
+      <h1>评论: (22条)</h1>
+      <comment v-for="(item, index) in comments" :value="item" :key="index"></comment>
+    </div>
   </div>
 </template>
 
@@ -24,17 +35,21 @@ marked.setOptions({
     return require('highlight.js').highlightAuto(code).value;
   }
 });
+
+var QRCode = require('qrcode')
+
 import { mapActions, mapGetters, mapState, mapMutations } from 'vuex'
 export default {
   name: 'ArticleDeatil',
   data() {
     return {
+      shareUrl: '',
       detail: {
-          "id":"xxxxxxxxxxxxxxxx",
-          "user_id":"xxxxxxxxxxxxxxxx",
-          "nick_name":"老王",
-          "title":"ttttt",
-          "content":`### 概览
+        "id": "xxxxxxxxxxxxxxxx",
+        "user_id": "xxxxxxxxxxxxxxxx",
+        "nick_name": "老王",
+        "title": "ttttt",
+        "content": `### 概览
 - Cordova
 
     Cordova 能够将你的 HTML/JS 代码打包在一个原生的容器中运行，并且可以调用系统的各类软硬件接口（JavaScript API）。我们将这种架构称之为 hybrid app , 得益于这种架构，我们能将前端代码跨平台运行，并且得到接近原生应用的系统特性。最终发布到各大应用市场，包括苹果的 App Store。
@@ -51,14 +66,23 @@ export default {
 
     CodePush 是微软提供的一项云服务，它为开发者提供了直接向用户推送热更新 (Hot-Code-Update) 的软件支持和 CDN 分发网络。CodePush 为 Cordova 开发者提供了插件，我们可以快速地植入应用中。它提供的特性包括：版本管理、灰度更新、紧急回滚、增量更新 (Diff) 等等。它的 CDN 是世界上最大的 CDN 服务商 Akamai 提供的，稳定性和速度可想而知。*未来可能收费*
           `,
-          "tags":['aaa','bbb'],
-          "reprint_count":10,
-          "read_count":10,
-          "comment_count":10,
-          "praise_count":10,
-          "create_at": "10:10:10",
-          "update_at": "10:10:11"
-        }
+        "tags": ['aaa', 'bbb'],
+        "reprint_count": 10,
+        "read_count": 10,
+        "comment_count": 10,
+        "praise_count": 10,
+        "create_at": "2017-02-14 10:21:10",
+        "update_at": "2017-02-14 10:21:10"
+      },
+      comments: [{
+        "id": "xxxxxxxxxxxxxxxx",
+        "article_id": "xxxxxxxxxxxxxxxx",
+        "user_id": "xxxxxxxxxxxxxxxx",
+        "nick_name": "老狗",
+        "content": "这里是评论的内容这里是评论的内容这里是评论的内容这里是评论的内容这里是评论的内容这里是评论的内容这里是评论",
+        "create_at": "2017-02-14 10:21:10",
+        "update_at": "2017-02-14 10:21:10"
+      }]
     }
   },
   computed: {
@@ -82,10 +106,22 @@ export default {
           }
         }
       })
-    }
+    },
+    share() {
+      QRCode.toDataURL('https://wayshon.com', (err, url) => {
+        console.log(url)
+        this.shareUrl = url;
+      })
+    },
   },
   mounted() {
     // this.getDetail();
   }
 }
 </script>
+
+<style lang="less" scoped>
+.article-content {
+  padding: 20px 60px;
+}
+</style>
