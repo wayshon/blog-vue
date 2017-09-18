@@ -9,7 +9,7 @@
               <h3 class="cell-title">{{value.title}}</h3>
               <h5 v-for="(obj ,index) of value.tags" class="cell-label" :style="{borderColor:choose(obj)}">{{obj}}</h5>
             </div>
-            <p class="cell-content">{{value.content}}</p>
+            <!-- <p class="cell-content">{{value.content}}</p> -->
         </article>
         <footer class="cell-footer">
             <span>13次阅读</span> <span>13次收藏</span> <span>13次赞</span> <span>13评论</span>
