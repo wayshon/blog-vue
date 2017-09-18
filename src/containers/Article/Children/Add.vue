@@ -84,9 +84,12 @@ export default {
       })
     },
     subtractTag() {
+      if (this.tags.length <= 0) return;
       this.tags.pop()
     },
     addTag() {
+      //最多只能3个标签
+      if (this.tags.length > 3) return;
       this.tags.push('')
     }
   }

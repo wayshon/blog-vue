@@ -8,7 +8,7 @@ let base = require('x-base64');
 
 const state = {
     user: {
-        id: userId
+        id: 'userId'
     }
 }
 
