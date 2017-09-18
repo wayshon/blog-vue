@@ -14,6 +14,9 @@
     </div>
     <h1>{{detail.title}}</h1>
     <article v-html="content"></article>
+    <div class="comment-conteng">
+      
+    </div>
   </div>
 </template>
 

@@ -2,6 +2,18 @@
   <div style="padding: 20px 0">
     <div class="title-head">
       <el-input class="head-input" v-model="title" placeholder="请输入标题"></el-input>
+      <div>
+        <span>标签</span>
+        <div class="tag-item">
+          <div v-for="(obj, index) of tags">
+              <el-input class="el-right" v-model="tags[index]" placeholder="请输入标签"></el-input>
+          </div>
+          <div>
+            <button class="tag-btn" v-show="tags.length > 0" @click="subtractTag">-</button>
+            <button class="tag-btn" @click="addTag">+</button>
+          </div>
+        </div>
+      </div>
       <el-button class="head-btn" @click.native="send">发送</el-button>
     </div>
     <div class="content">
@@ -54,7 +66,8 @@ export default {
     return {
       toolbarConfig: toolbarConfig,
       title: '',
-      content: ''
+      content: '',
+      tags:[]
     }
   },
   methods: {
@@ -69,6 +82,12 @@ export default {
         tags: ['tag1', 'tag2'],
         onsuccess: body => console.log(body)
       })
+    },
+    subtractTag() {
+      this.tags.pop()
+    },
+    addTag() {
+      this.tags.push('')
     }
   }
 }
@@ -76,6 +95,7 @@ export default {
 <style lang="less" scoped>
 .title-head {
   display: flex;
+  flex-direction: column;
 }
 
 .content {
@@ -89,4 +109,27 @@ export default {
 .head-btn {
   width: 300px;
 }
+
+.tag-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.tag-btn {
+  width: 20px;
+  height: 20px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+}
+
+.tag-btn:nth-child(1) {
+  border-color: red;
+  background-color: red;
+}
+
+.tag-btn:nth-child(2) {
+  border-color: green;
+  background-color: green;
+}
+
 </style>
