@@ -1,5 +1,6 @@
 html, body {
     height: 100%;
+    background-color: #f5f5d5;
 }
 
 *{margin:0;padding:0}
@@ -18,6 +19,7 @@ img{vertical-align:top;border:none}
     flex: 1;
 }
 
+
 .copy-right {
     padding: 20px 0;
     color: #999999;
@@ -32,7 +34,6 @@ img{vertical-align:top;border:none}
 }
 
  .header-container {
-    width: 100%;
     background-color: #808080;
     background-image: url('../images/home-bg.jpg');
     background-position: center center;
@@ -53,14 +54,13 @@ img{vertical-align:top;border:none}
   }
 
   .nav-banner {
-    position: relative;
-    padding: 0 100px;
     height: 60px;
-    background-color: #ffffff;
+    color: #ffffff!important;
     nav {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
+      line-height: 57px;
       height: 100%;
       a {
         margin-left: 10px;
@@ -69,28 +69,51 @@ img{vertical-align:top;border:none}
         padding-right: 10px;
         line-height: 57px;
         font-size: 18px;
-        color: #000000;
+        color: #ffffff!important;
+        text-decoration: none;
         border-bottom: solid 3px transparent;
+        cursor: pointer;        
         &.router-link-active {
           border-bottom-color: #39C240;
         }
       }
       .login-banner {
-        position: absolute;
-        right: 80px;
-        font-size: 14px;
-        color: #4A4A4A;
-        line-height: 30px;
-        text-align: right;
-        padding: 0;
-        a {
-          color: #4A4A4A;
-          font-size: 14px;
-          margin-left: 2px;
-          margin-right: 10px;
-          padding: 0 10px;
-          cursor: pointer;
-        }
+        // position: absolute;
+        // right: 80px;
+        // font-size: 14px;
+        // color: #4A4A4A;
+        // line-height: 30px;
+        // text-align: right;
+        // padding: 0;
+        // a {
+        //   color: #4A4A4A;
+        //   font-size: 14px;
+        //   margin-left: 2px;
+        //   margin-right: 10px;
+        //   padding: 0 10px;
+          // cursor: pointer;
+        // }
       }
+    }
+
+  }
+  .nav-bg{
+    background: #000;
+  }
+  @media screen  and (max-width: 560px) {
+    .nav-banner nav  a {
+        margin-left: 5px;
+        margin-right: 5px;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+  }
+  @media screen  and (max-width: 440px) {
+    .nav-banner nav  a {
+      margin-left: 0px;
+      margin-right: 0px;
+      padding-left: 0px;
+      padding-right: 5px;
+      font-size: 16px 
     }
   }

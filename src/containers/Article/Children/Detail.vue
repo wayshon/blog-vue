@@ -1,30 +1,41 @@
 <template>
   <div>
-    <div class="user-info">
-      <p>作者：{{detail.nick_name}}</p>
-      <div>
-        标签：
-        <span v-for="tag in detail.tags">{{tag}} </span>
-      </div>
-      <div>
-        <span>阅读{{detail.read_count}}</span>
-        <span>评论{{detail.comment_count}}</span>
-        <span>阅读{{detail.praise_count}}</span>
-      </div>
-      <div>
-        <span>更新于{{detail.update_at}}</span>
-      </div>
-      <el-button type="primary" @click.native="share">分享</el-button>
-      <img v-show="shareUrl" width="200" height="200" :src="shareUrl" />
-    </div>
     <div class="article-content">
       <h1>{{detail.title}}</h1>
-      <article v-html="content"></article>
+      <div class="user-info">
+        <p>作者：{{detail.nick_name}}</p>
+        <div>标签：<span v-for="tag in detail.tags">{{tag}} </span></div>
+        <div>
+          <span>阅读{{detail.read_count}}</span>
+          <span>评论{{detail.comment_count}}</span>
+          <span>阅读{{detail.praise_count}}</span>
+        </div>
+        <div>
+          <span>更新于{{detail.update_at}}</span>
+        </div>
+        <el-popover
+          ref="popover"
+          placement="right"
+          width="210"
+          trigger="click">
+              <p>分享到朋友圈</p>
+              <img width="200" height="200" :src="shareUrl" />
+              <p>
+              打开微信，点击底部的“发现”，<br>
+              使用“扫一扫”即可将网页分享至朋友圈。</p>
+        </el-popover>
+        <el-button class="share"  @click.native="share" v-popover:popover></el-button>
+        <!-- <div>
+          <img v-show="shareUrl" width="200" height="200" :src="shareUrl" />
+        </div> -->
     </div>
-    <div class="comment-content">
+      <article v-html="content"></article>
+          <div class="comment-content">
       <h1>评论: (22条)</h1>
       <comment v-for="(item, index) in comments" :value="item" :key="index"></comment>
     </div>
+    </div>
+
   </div>
 </template>
 
@@ -122,6 +133,37 @@ export default {
 
 <style lang="less" scoped>
 .article-content {
-  padding: 20px 60px;
+  padding: 20px 0;
+  width: 65%;
+  margin: 0 auto;
+  h1{
+      line-height: 2.5;
+      border-bottom: 1px solid #d3d3d3;
+  }
+  .user-info{
+    margin: 20px auto;
+    line-height: 1.5;
+    position: relative;
+    .share{
+      height: 58px;
+      width: 56px;
+      border: none;
+      background: url("../../../assets/images/share.jpg") no-repeat center;
+      position: absolute;
+      top: 0;
+      right: 0
+    }
+  }
 }
+
+@media (max-width: 48rem){
+  .article-content{
+      width: 85%;
+      min-width: 0px;
+      overflow: hidden;
+  }
+}
+
+
+
 </style>

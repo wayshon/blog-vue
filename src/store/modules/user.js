@@ -7,9 +7,9 @@ let base = require('x-base64');
 // let userId = JSON.parse(decode).user;
 
 const state = {
-    user: {
-        id: userId
-    }
+    // user: {
+    //     id: userId
+    // }
 }
 
 // mutations

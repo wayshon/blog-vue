@@ -17,7 +17,7 @@
           "user_id":"xxxxxxxxxxxxxxxx",
           "nick_name":"xxxxxxxxxxxxxxxx",
           "title":"ttttt",
-          "content":"xxxxxxxxxxxxxxxx",
+          "content":"xxxxxxxxxxxxxxxxyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
           "tags":[],
           "reprint_count":10,
           "read_count":10,
@@ -99,9 +99,9 @@
 </script>
 <style lang="less" scoped>
   .content {
-    min-width: 800px;
+    // min-width: 800px;
     display: flex;
-    align-items: center;
+    // align-items: center;
     flex-direction: column;
     padding: 20px 50px;
   }

@@ -1,15 +1,14 @@
 <template>
   <div id="app">
     <header class="header-container">
-      <div class="nav-banner">
+      <div class="nav-banner" v-bind:class="{ 'nav-bg': !isHasbg }">
         <nav>
           <router-link to="/home">Home</router-link>
           <router-link to="/auth/register">Sign up</router-link>
           <router-link to="/auth/login">Log in</router-link>
           <router-link to="/article/add">Add</router-link>
-          <div class="login-banner">
-            <a @click="logout">Log out</a>
-          </div>
+          <router-link to="/article/add">Mine</router-link>
+          <a @click="logout">Log out</a>
         </nav>
       </div>
       <div v-show="$route.name === 'Home' || $route.name === 'NotFound'  || $route.name === 'Auth'">
@@ -34,6 +33,9 @@ export default {
       Interface: state => state.utils.Interface,
       user: state => state.user.user,
     }),
+    isHasbg(){
+        return this.$route.name === 'Home' || this.$route.name === 'NotFound'  || this.$route.name === 'Auth'
+    }
   },
   watch: {
     'Interface.alert.show'(v) {
