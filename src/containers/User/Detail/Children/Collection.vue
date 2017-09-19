@@ -9,7 +9,7 @@
     name: 'UserCollection',
     data() {
       return {
-        msg: 'UserCollection'
+        msg: '网站维护中...很快恢复数据。'
       }
     }
   }

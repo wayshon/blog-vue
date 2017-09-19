@@ -7,7 +7,7 @@
           <router-link to="/auth/register">Sign up</router-link>
           <router-link to="/auth/login">Log in</router-link>
           <router-link to="/article/add">Add</router-link>
-          <router-link to="/article/add">Mine</router-link>
+          <router-link :to="`/user/${userId}/article`">Mine</router-link>
           <a @click="logout">Log out</a>
         </nav>
       </div>
@@ -28,6 +28,11 @@
 import { mapActions, mapGetters, mapState, mapMutations } from 'vuex'
 export default {
   name: 'App',
+  data() {
+    return {
+      userId: 888
+    }
+  },
   computed: {
     ...mapState({
       Interface: state => state.utils.Interface,

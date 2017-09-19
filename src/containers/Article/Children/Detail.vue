@@ -4,36 +4,37 @@
       <h1>{{detail.title}}</h1>
       <div class="user-info">
         <p>作者：{{detail.nick_name}}</p>
-        <div>标签：<span v-for="tag in detail.tags">{{tag}} </span></div>
+        <div>标签：
+          <span v-for="tag in detail.tags">{{tag}} </span>
+        </div>
         <div>
           <span>阅读{{detail.read_count}}</span>
           <span>评论{{detail.comment_count}}</span>
-          <span>阅读{{detail.praise_count}}</span>
+          <span>赞{{detail.praise_count}}</span>
         </div>
         <div>
           <span>更新于{{detail.update_at}}</span>
         </div>
-        <el-popover
-          ref="popover"
-          placement="right"
-          width="210"
-          trigger="click">
-              <p>分享到朋友圈</p>
-              <img width="200" height="200" :src="shareUrl" />
-              <p>
-              打开微信，点击底部的“发现”，<br>
-              使用“扫一扫”即可将网页分享至朋友圈。</p>
+        <el-popover ref="popover" placement="right" width="210" trigger="click">
+          <p>分享到朋友圈</p>
+          <img width="200" height="200" :src="shareUrl" />
+          <p>
+            打开微信，点击底部的“发现”，<br> 使用“扫一扫”即可将网页分享至朋友圈。
+          </p>
         </el-popover>
-        <el-button class="share"  @click.native="share" v-popover:popover></el-button>
+        <el-button class="share" @click.native="share" v-popover:popover></el-button>
         <!-- <div>
-          <img v-show="shareUrl" width="200" height="200" :src="shareUrl" />
-        </div> -->
-    </div>
+            <img v-show="shareUrl" width="200" height="200" :src="shareUrl" />
+          </div> -->
+      </div>
       <article v-html="content"></article>
-          <div class="comment-content">
-      <h1>评论: (22条)</h1>
-      <comment v-for="(item, index) in comments" :value="item" :key="index"></comment>
-    </div>
+      <div class="comment-content">
+        <h1>评论: (22条)</h1>
+        <el-input type="textarea" :maxlength="50" :autosize="{maxRows: 3}" placeholder="请输入评论内容, 50字" v-model="commentContent"></el-input>
+        <p>{{commentContent.length}} / 50</p>
+        <el-button :disabled="!commentContent || commentContent.length == 0">提交</el-button>
+        <comment class="comment-list" v-for="(item, index) in comments" :value="item" :key="index"></comment>
+      </div>
     </div>
 
   </div>
@@ -55,6 +56,7 @@ export default {
   data() {
     return {
       shareUrl: '',
+      commentContent: '',
       detail: {
         "id": "xxxxxxxxxxxxxxxx",
         "user_id": "xxxxxxxxxxxxxxxx",
@@ -86,6 +88,14 @@ export default {
         "update_at": "2017-02-14 10:21:10"
       },
       comments: [{
+        "id": "xxxxxxxxxxxxxxxx",
+        "article_id": "xxxxxxxxxxxxxxxx",
+        "user_id": "xxxxxxxxxxxxxxxx",
+        "nick_name": "老狗",
+        "content": "这里是评论的内容这里是评论的内容这里是评论的内容这里是评论的内容这里是评论的内容这里是评论的内容这里是评论",
+        "create_at": "2017-02-14 10:21:10",
+        "update_at": "2017-02-14 10:21:10"
+      },{
         "id": "xxxxxxxxxxxxxxxx",
         "article_id": "xxxxxxxxxxxxxxxx",
         "user_id": "xxxxxxxxxxxxxxxx",
@@ -136,15 +146,15 @@ export default {
   padding: 20px 0;
   width: 65%;
   margin: 0 auto;
-  h1{
-      line-height: 2.5;
-      border-bottom: 1px solid #d3d3d3;
+  h1 {
+    line-height: 2.5;
+    border-bottom: 1px solid #d3d3d3;
   }
-  .user-info{
+  .user-info {
     margin: 20px auto;
     line-height: 1.5;
     position: relative;
-    .share{
+    .share {
       height: 58px;
       width: 56px;
       border: none;
@@ -156,14 +166,15 @@ export default {
   }
 }
 
-@media (max-width: 48rem){
-  .article-content{
-      width: 85%;
-      min-width: 0px;
-      overflow: hidden;
+@media (max-width: 48rem) {
+  .article-content {
+    width: 85%;
+    min-width: 0px;
+    overflow: hidden;
   }
 }
 
-
-
+.comment-list {
+  margin-top: 20px;
+}
 </style>

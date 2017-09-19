@@ -9,7 +9,7 @@
     name: 'UserComment',
     data() {
       return {
-        msg: 'UserComment'
+        msg: '网站维护中...很快恢复数据。'
       }
     }
   }
