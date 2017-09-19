@@ -28,6 +28,11 @@
           </div> -->
       </div>
       <article v-html="content"></article>
+      <div class="star-content">
+        <img :src="starPngSrc" @click="addStar"></img>
+        <p>111</p>
+      </div>
+      
       <div class="comment-content">
         <h1>评论: (22条)</h1>
         <el-input type="textarea" :maxlength="50" :autosize="{maxRows: 3}" placeholder="请输入评论内容, 50字" v-model="commentContent"></el-input>
@@ -41,6 +46,10 @@
 </template>
 
 <script>
+
+let noStarPng = require("../../../assets/images/zan_no.png"),
+    starPng = require("../../../assets/images/zan.png");
+
 var marked = require('marked');
 marked.setOptions({
   highlight: function(code) {
@@ -57,6 +66,7 @@ export default {
     return {
       shareUrl: '',
       commentContent: '',
+      hasStar: false,
       detail: {
         "id": "xxxxxxxxxxxxxxxx",
         "user_id": "xxxxxxxxxxxxxxxx",
@@ -111,6 +121,11 @@ export default {
       if (this.detail.content)
         return marked(this.detail.content)
       return ''
+    },
+    starPngSrc() {
+      if (this.hasStar)
+        return starPng;
+      return noStarPng;
     }
   },
   methods: {
@@ -134,6 +149,9 @@ export default {
         this.shareUrl = url;
       })
     },
+    addStar() {
+      this.hasStar = true;
+    }
   },
   mounted() {
     // this.getDetail();
@@ -177,4 +195,12 @@ export default {
 .comment-list {
   margin-top: 20px;
 }
+
+.star-content {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 </style>
