@@ -1,15 +1,19 @@
 <template>
   <div class="content">
-    <div class="title-head">     
-      <el-input placeholder="请输入标题" icon="search" v-model="searchVal" :on-icon-click="getList"></el-input>
+    <div class="title-head">
+      <el-input @keyup.13.native="getList" placeholder="请输入标题" icon="search" v-model="searchVal" :on-icon-click="getList"></el-input>
     </div>
     <div class="tags-content">
-      <el-checkbox-group v-model="tags">
+      <el-checkbox-group v-model="tags" @change="tagsChange">
         <el-checkbox-button v-for="(tag, index) in allTags" :label="tag" :key="index">{{tag.name}}</el-checkbox-button>
       </el-checkbox-group>
     </div>
     <div v-for="(obj, index) of list" class="article-cell" :class="cellBgColor(index)">
       <article-cell @header="goUser" @article="goDetail" :value="obj"></article-cell>
+    </div>
+    <div class="pagination-content">
+      <el-pagination @current-change="handleCurrentChange" :current-page="page" :page-size="size" layout="total, prev, pager, next" :total="total">
+      </el-pagination>
     </div>
   </div>
 </template>
@@ -23,65 +27,18 @@ export default {
     return {
       searchVal: '',
       tags: [],
-      allTags: [{name: '标签1'},{name: '标签2'},{name: '标签3'},{name: '标签4'}],
-      list: [{
-        "id": "xxxxxxxxxxxxxxxx",
-        "user_id": "xxxxxxxxxxxxxxxx",
-        "nick_name": "xxxxxxxxxxxxxxxx",
-        "title": "ttttt",
-        "content": "### 哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊",
-        "tags": [],
-        "reprint_count": 10,
-        "read_count": 10,
-        "comment_count": 10,
-        "praise_count": 10,
-        "create_at": "",
-        "update_at": ""
-      }, {
-        "id": "xxxxxxxxxxxxxxxx",
-        "user_id": "xxxxxxxxxxxxxxxx",
-        "nick_name": "xxxxxxxxxxxxxxxx",
-        "title": "ttttt",
-        "content": "哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈",
-        "tags": [],
-        "reprint_count": 10,
-        "read_count": 10,
-        "comment_count": 10,
-        "praise_count": 10,
-        "create_at": "",
-        "update_at": ""
-      }, {
-        "id": "xxxxxxxxxxxxxxxx",
-        "user_id": "xxxxxxxxxxxxxxxx",
-        "nick_name": "xxxxxxxxxxxxxxxx",
-        "title": "ttttt",
-        "content": "## 哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊",
-        "tags": [],
-        "reprint_count": 10,
-        "read_count": 10,
-        "comment_count": 10,
-        "praise_count": 10,
-        "create_at": "",
-        "update_at": ""
-      }, {
-        "id": "xxxxxxxxxxxxxxxx",
-        "user_id": "xxxxxxxxxxxxxxxx",
-        "nick_name": "xxxxxxxxxxxxxxxx",
-        "title": "ttttt",
-        "content": "## 哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊",
-        "tags": [],
-        "reprint_count": 10,
-        "read_count": 10,
-        "comment_count": 10,
-        "praise_count": 10,
-        "create_at": "",
-        "update_at": ""
-      }]
+      allTags: [],
+      list: [],
+      page: 1,
+      size: 10,
+      total: 0
     }
   },
   methods: {
     ...mapActions([
-      'articleList',
+      'getArticleList',
+      'getTagList',
+      'getArticleListByTag',
       'goto'
     ]),
     cellBgColor(index) {
@@ -103,11 +60,28 @@ export default {
         }
       })
     },
+    handleCurrentChange(val) {
+      this.page = val;
+      this.getList();
+    },
     getList() {
-      this.articleList({
+      this.getArticleList({
         title: this.searchVal,
-        // page: this.page.toString(),
-        // size: this.size.toString(),
+        page: this.page.toString(),
+        size: this.size.toString(),
+        onsuccess: (body, headers) => {
+          headers['x-current-page'] ? this.page = +headers['x-current-page'] : null;
+          headers['x-total'] ? this.total = +headers['x-total'] : null;
+
+          this.list = body.data;
+        }
+      })
+    },
+    getListByTags() {
+      this.getArticleListByTag({
+        tags: this.tags.map(v => v.name),
+        page: this.page.toString(),
+        size: this.size.toString(),
         onsuccess: (body, headers) => {
           // headers['x-current-page'] ? this.page = +headers['x-current-page'] : null;
           // headers['x-total'] ? this.total = +headers['x-total'] : null;
@@ -116,22 +90,29 @@ export default {
         }
       })
     },
-    getListByTags() {
-      this.articleList({
-        tags: this.tags,
+    getAllTags() {
+      this.getTagList({
         // page: this.page.toString(),
         // size: this.size.toString(),
         onsuccess: (body, headers) => {
           // headers['x-current-page'] ? this.page = +headers['x-current-page'] : null;
           // headers['x-total'] ? this.total = +headers['x-total'] : null;
 
-          this.list = body.data;
+          this.allTags = body.data;
         }
       })
+    },
+    tagsChange(event) {
+      if (this.tags.length > 0) {
+        this.getListByTags();
+      } else {
+        this.getList();
+      }
     }
   },
   mounted() {
-    // this.getList();
+    this.getList();
+    this.getAllTags();
   }
 }
 </script>
@@ -142,10 +123,12 @@ export default {
   // flex-direction: column;
   padding: 20px 50px;
 }
+
 .title-head {
-  width: 50%;
+  width: 100%;
   margin-bottom: 10px;
 }
+
 .article-cell {
   margin-top: 10px;
   border-radius: 10px;
@@ -158,10 +141,15 @@ export default {
 .bg-color-2 {
   background-color: rgb(246, 254, 244);
 }
-    @media screen  and (max-width: 640px) {
-    .title-head {
-      width: 100%;
-    }
+
+@media screen and (max-width: 640px) {
+  .title-head {
+    width: 100%;
   }
+}
+
+.pagination-content {
+  margin-top: 20px;
+}
 </style>
 

@@ -2,6 +2,8 @@ module.exports = {
   ...require('./utils'),
   ...require('./auth'),
   ...require('./ui'),
-  ...require('./user'),
   ...require('./article'),
+  ...require('./comment'),
+  ...require('./tag'),
+  ...require('./praise')
 }

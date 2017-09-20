@@ -146,9 +146,11 @@ module.exports = {
   
   xhr: (ctx, param) => {
     let headers = param.headers || {};
-    if (param.url.match(/article/) && (param.method === 'POST' || param.method === 'PUT')) {
+
+    if (!param.url.match(/login/) && !(param.url.match(/user/) && param.method === 'POST')) {
       headers.Authorization = localStorage.getItem('Authorization');
     }
+    
     ctx.commit('LOADING', 1)
 
     axios({
@@ -161,7 +163,7 @@ module.exports = {
       timeout: param.timeout || 5000,
     }).then(
       response => {
-        ctx.commit('LOADING')
+        ctx.commit('UNLOADING')
         if (+response.data.code === 0 || +response.status == 204) {
           param.method != 'GET' ? ctx.dispatch('showtoast',{type: 'success'}) : null
           param.onSuccess ? param.onSuccess(response.data, response.headers) : null
@@ -172,7 +174,7 @@ module.exports = {
       }
     ).catch(
       error => {
-        ctx.commit('LOADING')
+        ctx.commit('UNLOADING')
         // console.log(error)
 
         for(let key in error) {

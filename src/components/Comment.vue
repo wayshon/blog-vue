@@ -1,12 +1,12 @@
 <template>
     <div class="cell">
         <header @click="header">
-            <img src="https://placekitten.com/28/28" />
-            <span>隔壁老王</span>
+            <img width="28" height="28" :src="value.avatar" />
+            <span>{{value.nick_name}}</span>
         </header>
         <p>{{value.content}}</p>
         <footer class="cell-footer">
-            <span>{{value.update_at}}</span>
+            <span>{{new Date(value.create_at).toLocaleString()}}</span>
         </footer>
     </div>
 </template>

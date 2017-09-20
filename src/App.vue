@@ -4,16 +4,16 @@
       <div class="nav-banner" v-bind:class="{ 'nav-bg': !isHasbg }">
         <nav>
           <router-link to="/home">Home</router-link>
-          <router-link to="/auth/register">Sign up</router-link>
-          <router-link to="/auth/login">Log in</router-link>
-          <router-link to="/article/add">Add</router-link>
-          <router-link :to="`/user/${userId}/article`">Mine</router-link>
-          <a @click="logout">Log out</a>
+          <router-link v-show="!user.id" to="/auth/register">Sign up</router-link>
+          <router-link v-show="!user.id" to="/auth/login">Log in</router-link>
+          <router-link v-show="user.id" to="/article/add">Add</router-link>
+          <router-link v-show="user.id" :to="`/user/${user.id}/article`">Mine</router-link>
+          <a v-show="user.id" @click="logout">Log out</a>
         </nav>
       </div>
-      <div v-show="$route.name === 'Home' || $route.name === 'NotFound'  || $route.name === 'Auth'">
+      <div v-show="isHasbg">
         <h1 class="header-title">My Blog</h1>
-        <p class="header-sub-title">Word is cheap, show me the money</p>
+        <p class="header-sub-title">Talk is cheap, show me the code</p>
       </div>
     </header>
     <router-view class="first-router" v-loading.body="Interface.loading.show"></router-view>
@@ -30,7 +30,7 @@ export default {
   name: 'App',
   data() {
     return {
-      userId: 888
+      
     }
   },
   computed: {
@@ -71,8 +71,8 @@ export default {
       'setUser'
     ]),
     logout() {
-      this.setUser();
-      this.goto('/auth/login')
+      localStorage.removeItem("jwt")
+      this.setUser().then(() => this.goto('/auth/login'));
     }
   },
   mounted() {

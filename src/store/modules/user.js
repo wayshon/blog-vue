@@ -1,15 +1,21 @@
 let base = require('x-base64');
 
-// let Authorization = localStorage.getItem('Authorization');
+let userId;
+try {
+    let Authorization = localStorage.getItem('Authorization');
+    
+    let jwt = Authorization.split('.')[1];
+    let decode = base.decode(jwt);
+    userId = JSON.parse(decode).user;
+} catch(e) {
+    userId = ''
+}
 
-// let jwt = Authorization.split('.')[1];
-// let decode = base.decode(jwt);
-// let userId = JSON.parse(decode).user;
 
 const state = {
-    // user: {
-    //     id: userId
-    // }
+    user: {
+        id: userId
+    }
 }
 
 // mutations

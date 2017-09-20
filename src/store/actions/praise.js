@@ -1,29 +1,25 @@
 module.exports = {
-    addComment(ctx, param) {
+    addPraise(ctx, param) {
         ctx.dispatch('xhr', {
-            url: `/${param.article_id}/comment`,
+            url: `/${param.article_id}/praise`,
             method: 'POST',
-            body: {
-                content: param.content
-            },
             onSuccess: body => {
                 param.onsuccess ? param.onsuccess(body) : null
             }
         })
     },
-    removeComment(ctx, param) {
+    removePraise(ctx, param) {
         ctx.dispatch('xhr', {
-            url: `/${param.article_id}/comment/${id}`,
+            url: `/${param.article_id}/praise`,
             method: 'DELETE',
             onSuccess: body => {
-                ctx.dispatch('showtoast', { text: '删除成功', type: 'success' });
                 param.onsuccess ? param.onsuccess(body) : null
             }
         })
     },
-    getCommentList(ctx, param) {
+    getPraiseList(ctx, param) {
         ctx.dispatch('xhr', {
-            url: `/${param.article_id}/comment`,
+            url: `/${param.article_id}/praise`,
             method: 'GET',
             headers: {
                 'X-Current-Page': param.page || 1,
@@ -31,6 +27,15 @@ module.exports = {
             },
             onSuccess: (body, headers) => {
                 param.onsuccess ? param.onsuccess(body, headers) : null
+            }
+        })
+    },
+    getPraise(ctx, param) {
+        ctx.dispatch('xhr', {
+            url: `/${param.article_id}/praise`,
+            method: 'GET',
+            onSuccess: body => {
+                param.onsuccess ? param.onsuccess(body) : null
             }
         })
     }

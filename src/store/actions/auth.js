@@ -26,9 +26,12 @@ module.exports = {
       },
       onSuccess: body => {
         ctx.dispatch('showtoast', {text: '登陆成功', type: 'success'});
-        sessionStorage.setItem('jwt', body.data.Authorization)
+        localStorage.setItem('Authorization', body.data.Authorization)
         param.onsuccess ? param.onsuccess(body) : null
       }
     })
+  },
+  setUser(ctx, param){
+    ctx.commit('setUser', {...param})
   }
 }

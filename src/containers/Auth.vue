@@ -29,7 +29,7 @@
       </div>
       <div class="input-content">
         <span>头像</span>
-        <el-input v-model="avatar" placeholder="请输入头像"></el-input>
+        <el-input v-model="avatar" placeholder="请输入头像url"></el-input>
       </div>
         <div class="input-content">
           <span></span>
@@ -51,8 +51,7 @@ export default {
       nickName: "",
       email: "",
       mobile: "",
-      avatar: "",
-      manager: 0
+      avatar: ""
     }
   },
   computed: {
@@ -70,23 +69,33 @@ export default {
     ]),
     registFun() {
       this.regist({
-        user_name: "wayshon",
-        password: "123456",
-        nick_name: "王旭",
-        email: "wayshon@qq.com",
-        mobile: "15766666666",
-        avatar: "https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/30d56dac6deed198f47e593eb89d8333_121_121.jpg",
+        user_name: this.userName,
+        password: this.password,
+        nick_name: this.nickName,
+        email: this.email,
+        mobile: this.mobile,
+        avatar: this.avatar,
         onsuccess: body => {
           this.goto('/auth/login')
         }
       })
+      // this.regist({
+      //   user_name: "wayshon",
+      //   password: "123456",
+      //   nick_name: "王旭",
+      //   email: "wayshon@qq.com",
+      //   mobile: "15766666666",
+      //   avatar: "https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/30d56dac6deed198f47e593eb89d8333_121_121.jpg",
+      //   onsuccess: body => {
+      //     this.goto('/auth/login')
+      //   }
+      // })
     },
     loginFun() {
       this.login({
-        user_name: 'wayshon',
-        password: '123456',
+        user_name: this.userName,
+        password: this.password,
         onsuccess: body => {
-          // this.goto({ name: 'Home' })
           try {
             localStorage.setItem('Authorization', body.data.token);
 

@@ -10,7 +10,7 @@ const state = {
       type: 'info'
     },
     loading: {
-      show: false
+      show: 0
     },
     alert: {
       show: false,
@@ -27,7 +27,10 @@ const mutations = {
     state.Interface.toast = {...state.Interface.toast, ...payload}
   },
   LOADING(state, payload){
-    state.Interface.loading.show = !!payload
+    state.Interface.loading.show += 1;
+  },
+  UNLOADING(state, payload){
+    state.Interface.loading.show > 0 ? state.Interface.loading.show -= 1 : null;
   },
   ALERT(state, payload){
     state.Interface.alert = {...state.Interface.alert, ...payload}

@@ -1,8 +1,8 @@
 <template>
     <div class="cell">
         <header @click="header">
-            <img src="https://placekitten.com/28/28" />
-            <span>隔壁老王</span> - <span>2017-08-25 16:31</span>
+            <img width="28" height="28" :src="value.avatar" />
+            <span>{{value.nick_name}}</span> - <span>{{new Date(value.create_at).toLocaleString()}}</span>
         </header>
         <article @click="article">
             <div class="cell-title-content">
@@ -12,9 +12,9 @@
             <article v-show="!hideContent" class="cell-content" v-html="markContent(value.content)"></article>
         </article>
         <footer class="cell-footer">
-            <span>13次阅读</span>
-            <span>13次赞</span>
-            <span>13评论</span>
+            <span>{{value.read_count}}次阅读</span>
+            <span>{{value.comment_count}}评论</span>
+            <span>{{value.praise_count}}次赞</span>
         </footer>
     </div>
 </template>
@@ -58,8 +58,9 @@
         }
       },
       markContent(v) {
-        if (v)
-          return marked(v)
+        if (v) {
+          return marked(v.slice(0, 60))
+        }
         return ''
       }
     }
