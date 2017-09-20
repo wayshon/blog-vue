@@ -1,6 +1,8 @@
 <template>
   <div class="content">
-    <el-input placeholder="请输入标题" icon="search" v-model="searchVal" :on-icon-click="getList"></el-input>
+    <div class="title-head">     
+      <el-input placeholder="请输入标题" icon="search" v-model="searchVal" :on-icon-click="getList"></el-input>
+    </div>
     <div class="tags-content">
       <el-checkbox-group v-model="tags">
         <el-checkbox-button v-for="(tag, index) in allTags" :label="tag" :key="index">{{tag.name}}</el-checkbox-button>
@@ -126,7 +128,10 @@ export default {
   // flex-direction: column;
   padding: 20px 50px;
 }
-
+.title-head {
+  width: 50%;
+  margin-bottom: 10px;
+}
 .article-cell {
   margin-top: 10px;
   border-radius: 10px;
