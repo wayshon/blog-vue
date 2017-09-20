@@ -15,6 +15,7 @@
 </template>
 
 <script>
+
 import { mapActions, mapGetters, mapState, mapMutations } from 'vuex'
 export default {
   name: 'Home',
@@ -28,7 +29,7 @@ export default {
         "user_id": "xxxxxxxxxxxxxxxx",
         "nick_name": "xxxxxxxxxxxxxxxx",
         "title": "ttttt",
-        "content": "xxxxxxxxxxxxxxxxyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+        "content": "### 哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊",
         "tags": [],
         "reprint_count": 10,
         "read_count": 10,
@@ -41,7 +42,7 @@ export default {
         "user_id": "xxxxxxxxxxxxxxxx",
         "nick_name": "xxxxxxxxxxxxxxxx",
         "title": "ttttt",
-        "content": "xxxxxxxxxxxxxxxx",
+        "content": "哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈",
         "tags": [],
         "reprint_count": 10,
         "read_count": 10,
@@ -54,7 +55,20 @@ export default {
         "user_id": "xxxxxxxxxxxxxxxx",
         "nick_name": "xxxxxxxxxxxxxxxx",
         "title": "ttttt",
-        "content": "xxxxxxxxxxxxxxxx",
+        "content": "## 哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊",
+        "tags": [],
+        "reprint_count": 10,
+        "read_count": 10,
+        "comment_count": 10,
+        "praise_count": 10,
+        "create_at": "",
+        "update_at": ""
+      }, {
+        "id": "xxxxxxxxxxxxxxxx",
+        "user_id": "xxxxxxxxxxxxxxxx",
+        "nick_name": "xxxxxxxxxxxxxxxx",
+        "title": "ttttt",
+        "content": "## 哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈啊",
         "tags": [],
         "reprint_count": 10,
         "read_count": 10,

@@ -31,7 +31,7 @@ module.exports = {
       '/api': {
         // target: 'http://localhost:3000/',
         // target: 'http://106.15.203.220:3000/',
-        target: 'https://api.blog.wayshon.com/',
+        target: 'https://api.wayshon.com/',
         changeOrigin: true,
         pathRewrite: {
           // '^/api': ''
