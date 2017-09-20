@@ -122,8 +122,8 @@ export default {
 <style lang="less" scoped>
 .content {
   // min-width: 800px;
-  display: flex; // align-items: center;
-  flex-direction: column;
+  // display: flex; // align-items: center;
+  // flex-direction: column;
   padding: 20px 50px;
 }
 

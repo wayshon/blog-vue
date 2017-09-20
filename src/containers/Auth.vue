@@ -1,12 +1,18 @@
 <template>
   <div class="content">
-    <div class="input-content">
-      <span>用户名</span>
-      <el-input v-model="userName" placeholder="请输入用户名"></el-input>
-    </div>
-    <div class="input-content">
-      <span>密码</span>
-      <el-input type="password" v-model="password" placeholder="请输入密码"></el-input>
+    <div>
+      <div class="input-content">
+        <span>用户名</span>
+        <el-input v-model="userName" placeholder="请输入用户名"></el-input>
+      </div>
+      <div class="input-content">
+        <span>密码</span>
+        <el-input type="password" v-model="password" placeholder="请输入密码"></el-input>
+      </div>
+        <div class="input-content"  v-if="!isRegist">
+          <span></span>
+          <el-button type="primary" @click.native="loginFun">登    录</el-button>
+        </div>
     </div>
     <div v-if="isRegist">
       <div class="input-content">
@@ -25,9 +31,11 @@
         <span>头像</span>
         <el-input v-model="avatar" placeholder="请输入头像"></el-input>
       </div>
+        <div class="input-content">
+          <span></span>
+          <el-button type="primary" @click.native="registFun">注    册</el-button>
+        </div>
     </div>
-    <el-button type="primary" v-if="isRegist" @click.native="registFun">注册</el-button>
-    <el-button type="primary"  v-else @click.native="loginFun">登录</el-button>
   </div>
 </template>
 
@@ -99,10 +107,12 @@ export default {
 </script>
 <style lang="less" scoped>
 .content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 350px;
+  margin: 20px auto;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
 }
 
 .input-content {
@@ -115,8 +125,23 @@ export default {
     text-align: end;
     padding-right: 10px;
   }
-  .el-input {
+  .el-input,
+  .el-button {
     width: 70%;
   }
 }
+.register{
+  display: flex;
+  align-items: center;
+  min-width: 100px;
+  .el-button{
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+  @media screen  and (max-width: 414px) {
+    .content {
+      width: 250px;
+    }
+  }
 </style>
