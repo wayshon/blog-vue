@@ -29,9 +29,9 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        // target: 'http://localhost:6001/',
-        target: 'http://106.15.203.220:6001/',
-        // target: 'https://www.wayshon.com/',
+        // target: 'http://localhost:3000/',
+        // target: 'http://106.15.203.220:3000/',
+        target: 'https://api.blog.wayshon.com/',
         changeOrigin: true,
         pathRewrite: {
           // '^/api': ''
