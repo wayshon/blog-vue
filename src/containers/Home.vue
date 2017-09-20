@@ -144,5 +144,10 @@ export default {
 .bg-color-2 {
   background-color: rgb(246, 254, 244);
 }
+    @media screen  and (max-width: 640px) {
+    .title-head {
+      width: 100%;
+    }
+  }
 </style>
 

@@ -153,7 +153,7 @@ export default {
   .search{
     .el-input{
       float:left;
-      width: 50%
+      width: 80%
     }
     .tags-content{
       float: left;
