@@ -22,7 +22,8 @@
             打开微信，点击底部的“发现”，<br> 使用“扫一扫”即可将网页分享至朋友圈。
           </p>
         </el-popover>
-        <el-button class="share" @click.native="share" v-popover:popover></el-button>
+        <el-button type="primary" icon="share" class="share" @click.native="share" v-popover:popover></el-button>
+        <!-- <el-button class="share" @click.native="share" v-popover:popover></el-button> -->
         <!-- <div>
             <img v-show="shareUrl" width="200" height="200" :src="shareUrl" />
           </div> -->
@@ -36,8 +37,10 @@
       <div class="comment-content">
         <h1>评论: (22条)</h1>
         <el-input type="textarea" :maxlength="50" :autosize="{maxRows: 3}" placeholder="请输入评论内容, 50字" v-model="commentContent"></el-input>
-        <p>{{commentContent.length}} / 50</p>
-        <el-button :disabled="!commentContent || commentContent.length == 0">提交</el-button>
+        <div class="submit">
+            <span >{{commentContent.length}} / 50</span>
+            <el-button type="primary" :disabled="!commentContent || commentContent.length == 0">提交</el-button>
+        </div>
         <comment class="comment-list" v-for="(item, index) in comments" :value="item" :key="index"></comment>
       </div>
     </div>
@@ -173,10 +176,10 @@ export default {
     line-height: 1.5;
     position: relative;
     .share {
-      height: 58px;
-      width: 56px;
-      border: none;
-      background: url("../../../assets/images/share.jpg") no-repeat center;
+      // height: 58px;
+      // width: 56px;
+      // border: none;
+      // background: url("../../../assets/images/share.jpg") no-repeat center;
       position: absolute;
       top: 0;
       right: 0
@@ -201,6 +204,22 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  img{
+    height: 38px;
+    width: 40px
+  }
+  p{
+    margin-left:10px;
+  }
 }
+  .submit{
+    text-align: right;  
+    border-bottom: 1px solid #d3d3d3;
+    padding-bottom: 20px;
+    margin: 10px 0;
+    span{
+      margin-right: 10px
+    }
 
+  }
 </style>
