@@ -9,7 +9,7 @@
               <h3 class="cell-title">{{value.title}}</h3>
               <h5 v-for="(obj ,index) of value.tags" class="cell-label" :style="{borderColor:choose(obj)}">{{obj}}</h5>
             </div>
-            <p v-show="!hideContent" class="cell-content">{{value.content}}</p>
+            <article v-show="!hideContent" class="cell-content" v-html="markContent(value.content)"></article>
         </article>
         <footer class="cell-footer">
             <span>13次阅读</span>
@@ -20,6 +20,13 @@
 </template>
 
 <script>
+  let marked = require('marked');
+  marked.setOptions({
+    highlight: function(code) {
+      return require('highlight.js').highlightAuto(code).value;
+    }
+  });
+
   let colors = ["#9DDBFB", "#DE96E4", "#BEC8EB", "#93E1DE", "#CDB7AE", "#BECED5", "#FFBA8D", "#97E1E9", "#EDB5B5", "#FFDB70"];
   export default{
     props: {
@@ -50,6 +57,11 @@
           return "#F5F6F6"
         }
       },
+      markContent(v) {
+        if (v)
+          return marked(v)
+        return ''
+      }
     }
   }
 </script>

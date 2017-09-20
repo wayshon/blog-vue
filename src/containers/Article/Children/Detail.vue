@@ -50,14 +50,14 @@
 let noStarPng = require("../../../assets/images/zan_no.png"),
     starPng = require("../../../assets/images/zan.png");
 
-var marked = require('marked');
+let marked = require('marked');
 marked.setOptions({
   highlight: function(code) {
     return require('highlight.js').highlightAuto(code).value;
   }
 });
 
-var QRCode = require('qrcode')
+let QRCode = require('qrcode')
 
 import { mapActions, mapGetters, mapState, mapMutations } from 'vuex'
 export default {
