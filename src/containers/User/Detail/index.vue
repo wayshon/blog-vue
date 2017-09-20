@@ -1,19 +1,23 @@
 <template>
-  <div class="content">
+  <div class="container">
     <div class="info">
-      <div><img width="50" height="50" :src="user.avatar"><span>{{user.nick_name}}</span></div>
+      <div class="info-title">
+        <img width="50" height="50" :src="user.avatar">
+        <span>{{user.nick_name}}</span>
+      </div>
       <p>邮箱: {{user.email}}</p>
       <p>电话: {{user.mobile}}</p>
       <p>创建于: {{user.create_at}}</p>
     </div>
-    <el-tabs v-model="tabVal" @tab-click="tabClick">
-      <el-tab-pane label="文章" name="article"></el-tab-pane>
-      <el-tab-pane label="收藏" name="collection"></el-tab-pane>
-      <el-tab-pane label="评论" name="comment"></el-tab-pane>
-      <el-tab-pane label="赞" name="star"></el-tab-pane>
-    </el-tabs>
-    
-    <router-view />
+    <div class="content">
+      <el-tabs v-model="tabVal" @tab-click="tabClick">
+        <el-tab-pane label="文章" name="article"></el-tab-pane>
+        <el-tab-pane label="收藏" name="collection"></el-tab-pane>
+        <el-tab-pane label="评论" name="comment"></el-tab-pane>
+        <el-tab-pane label="赞" name="star"></el-tab-pane>
+      </el-tabs>
+      <router-view />
+  </div>
   </div>
 </template>
 
@@ -76,10 +80,40 @@
 </script>
 
 <style lang="less" scoped>
-  .content {
-    padding: 20px 0;
+  .container {
+    padding: 20px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    // flex-direction: column;
+    // align-items: center;
+  }
+  .info{
+    flex: 1;
+    .info-title{
+      margin-bottom: 10px;      
+      span{
+        display: inline-block;
+        line-height: 50px;
+        margin-left: 10px;
+      }
+    }
+    p{
+      margin: 10px 0;      
+    }
+  }
+  .content{
+    flex:3;
+    padding: 0 20px
+  }
+    @media screen  and (max-width: 440px) {
+      .container {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        // align-items: center;
+      }
+      .content{
+        // flex:3;
+        padding: 0 
+      }
   }
 </style>

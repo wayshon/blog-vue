@@ -12,7 +12,9 @@
             <p v-show="!hideContent" class="cell-content">{{value.content}}</p>
         </article>
         <footer class="cell-footer">
-            <span>13次阅读</span> <span>13次赞</span> <span>13评论</span>
+            <span>13次阅读</span>
+            <span>13次赞</span>
+            <span>13评论</span>
         </footer>
     </div>
 </template>
@@ -78,6 +80,10 @@
   .cell-footer {
     display: flex;
     padding-top: 10px;
+    span{
+      margin-right: 10px;
+      color: rgb(133, 144, 166);
+    }
   }
 
   .cell-footer-content {

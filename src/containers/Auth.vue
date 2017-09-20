@@ -26,8 +26,8 @@
         <el-input v-model="avatar" placeholder="请输入头像"></el-input>
       </div>
     </div>
-    <el-button v-if="isRegist" @click.native="registFun">注册</el-button>
-    <el-button v-else @click.native="loginFun">登录</el-button>
+    <el-button type="primary" v-if="isRegist" @click.native="registFun">注册</el-button>
+    <el-button type="primary"  v-else @click.native="loginFun">登录</el-button>
   </div>
 </template>
 

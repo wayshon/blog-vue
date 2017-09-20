@@ -1,10 +1,12 @@
 <template>
   <div class="content">
-    <el-input placeholder="请输入标题" icon="search" v-model="searchVal" :on-icon-click="getList"></el-input>
-    <div class="tags-content">
-      <el-checkbox-group v-model="tags">
-        <el-checkbox-button v-for="(tag, index) in allTags" :label="tag" :key="index">{{tag.name}}</el-checkbox-button>
-      </el-checkbox-group>
+    <div class="search">
+      <el-input placeholder="请输入标题" icon="search" v-model="searchVal" :on-icon-click="getList"></el-input>
+      <div class="tags-content">
+        <el-checkbox-group v-model="tags">
+          <el-checkbox-button v-for="(tag, index) in allTags" :label="tag" :key="index">{{tag.name}}</el-checkbox-button>
+        </el-checkbox-group>
+      </div>
     </div>
     <div v-for="(obj, index) of list" class="article-cell">
       <article-cell :hideContent="true" @header="goUser" @article="goDetail" :value="obj"></article-cell>
@@ -119,12 +121,26 @@ export default {
 
 <style lang="less" scoped>
 .content {
-  padding: 20px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 10px 0 0;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+    // width: 80%
+  
 }
-
+  .search{
+    overflow: hidden;
+    margin-bottom: 10px;
+    .el-input{
+      float:left;
+      width: 50%
+    }
+    .tags-content{
+      float: right;
+      padding-left: 5%;
+      width: 45%
+    }
+  }
 .article-cell {
   margin-top: 10px;
   border-bottom: 1px solid gray;
@@ -133,4 +149,18 @@ export default {
 .article-cell:last-child {
   border: none;
 }
+  @media screen  and (max-width: 880px) {
+  .search{
+    .el-input{
+      float:left;
+      width: 50%
+    }
+    .tags-content{
+      float: left;
+      padding-left: 0;
+      width: 100%;
+      margin-top: 10px;
+    }
+  }
+  }
 </style>
