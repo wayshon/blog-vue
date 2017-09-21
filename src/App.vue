@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" v-loading.body="Interface.loading.show">
     <header class="header-container">
       <div class="nav-banner" v-bind:class="{ 'nav-bg': !isHasbg }">
         <nav>
@@ -16,7 +16,7 @@
         <p class="header-sub-title">Talk is cheap, show me the code</p>
       </div>
     </header>
-    <router-view class="first-router" v-loading.body="Interface.loading.show"></router-view>
+    <router-view class="first-router"></router-view>
     <footer class="copy-right">
       <span>Powered By Wayshon.</span>
       <span>Copyright©2017-2017 All Rights Reserved.</span>
