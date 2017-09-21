@@ -121,7 +121,7 @@ export default {
   // min-width: 800px;
   // display: flex; // align-items: center;
   // flex-direction: column;
-  padding: 20px 50px;
+  padding: 20px 2%;
 }
 
 .title-head {

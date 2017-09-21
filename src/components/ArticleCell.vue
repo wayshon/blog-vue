@@ -7,7 +7,9 @@
         <article @click="article">
             <div class="cell-title-content">
               <h3 class="cell-title">{{value.title}}</h3>
-              <h5 v-for="(obj ,index) of value.tags" class="cell-label" :style="{borderColor:choose(obj)}">{{obj}}</h5>
+              <div class="cell-label-content">
+                <h5 v-for="(obj ,index) of value.tags" class="cell-label" :style="{borderColor:choose(obj)}">{{obj}}</h5>
+              </div>
             </div>
             <article v-show="!hideContent" class="cell-content" v-html="markContent(value.content)"></article>
         </article>
@@ -73,13 +75,23 @@
 
   .cell-title-content {
     display: flex;
+    flex-direction: column;
     padding-top: 10px;
+  }
+
+  .cell-label-content {
+    display: flex;
+    flex-direction: row; 
   }
 
   .cell-label {
     margin-left: 10px;
     border: 2px #fff solid;
     border-radius: 5px;
+  }
+
+  .cell-label:first-child {
+    margin-left: 0;
   }
 
   .cell-content {
