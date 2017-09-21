@@ -9,7 +9,7 @@
         </div> -->
     </div>
     <div v-for="(obj, index) of list" class="article-cell">
-      <article-cell @header="goUser" @article="goDetail" :value="obj"></article-cell>
+      <article-cell @article="goDetail" :value="obj"></article-cell>
     </div>
     <div class="pagination-content">
       <el-pagination @current-change="handleCurrentChange" :current-page="page" :page-size="size" layout="total, prev, pager, next" :total="total">
@@ -38,14 +38,6 @@ export default {
       'getArticleListByUserId',
       'goto'
     ]),
-    goUser(obj) {
-      this.goto({
-        name: 'UserDetail',
-        params: {
-          id: obj.userId
-        }
-      })
-    },
     goDetail(obj) {
       this.goto({
         name: 'ArticleDetail',

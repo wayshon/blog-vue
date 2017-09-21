@@ -42,9 +42,9 @@ export default {
     ]),
     goUser(obj) {
       this.goto({
-        name: 'UserDetail',
+        name: 'UserArticle',
         params: {
-          id: obj.userId
+          id: obj.user_id
         }
       })
     },
