@@ -68,6 +68,12 @@ export default {
       tags: []
     }
   },
+  computed: {
+    sendTags() {
+      let tags = this.tags.filter(v => v != '');
+      return Array.from(new Set(tags))
+    }
+  },
   methods: {
     ...mapActions([
       'addArticle',
@@ -77,10 +83,10 @@ export default {
       this.addArticle({
         title: this.title,
         content: this.content,
-        tags: this.tags,
+        tags: this.sendTags,
         onsuccess: body => {
           console.log(body)
-          this.$router.push({
+          this.goto({
             name: 'ArticleDetail',
             params: {
               id: body.data.id

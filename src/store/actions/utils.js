@@ -165,7 +165,7 @@ module.exports = {
       response => {
         ctx.commit('UNLOADING')
         if (+response.data.code === 0 || +response.status == 204) {
-          param.method != 'GET' ? ctx.dispatch('showtoast',{type: 'success'}) : null
+          (param.method != 'GET' || param.url == '/article/search/') ? ctx.dispatch('showtoast',{type: 'success'}) : null
           param.onSuccess ? param.onSuccess(response.data, response.headers) : null
         } else {
           ctx.dispatch('showtoast', {text: response.data.errmsg, type:'warning'});

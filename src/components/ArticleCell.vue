@@ -59,7 +59,7 @@
       },
       markContent(v) {
         if (v) {
-          return marked(v.slice(0, 60))
+          return marked(v.slice(0, 80))
         }
         return ''
       }
