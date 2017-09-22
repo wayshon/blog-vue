@@ -51,8 +51,7 @@ export default {
             this.$store.state.utils.Interface.alert.show = false;
             if (this.Interface.alert.code == 401) {
               localStorage.removeItem("Authorization")
-              console.log('=======================  401')
-              this.goto({ path: '/auth/login' })
+              this.setUser().then(() => this.goto('/auth/login'));
             }
           }
         });

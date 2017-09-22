@@ -132,6 +132,7 @@ export default {
       })
     },
     getStar() {
+      if (!localStorage.getItem('Authorization')) return;
       this.getPraise({
         article_id: this.$route.params.id,
         onsuccess: body => {

@@ -192,7 +192,7 @@ module.exports = {
         if (status === 401) {
           ctx.dispatch('showalert', {
             code: status,
-            content: '登录失效!'
+            content: '登录失效或尚未登录'
           });
         } else if (status === 400) {
           ctx.dispatch('showtoast', {text: 'Bad Request', type: 'error'});
