@@ -32,7 +32,7 @@ module.exports = {
     },
     getPraise(ctx, param) {
         ctx.dispatch('xhr', {
-            url: `/${param.article_id}/praise`,
+            url: `/${param.article_id}/praise/user`,
             method: 'GET',
             onSuccess: body => {
                 param.onsuccess ? param.onsuccess(body) : null

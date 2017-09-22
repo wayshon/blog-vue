@@ -18,6 +18,8 @@ const ArticleAdd = resolve => require.ensure([], () => {resolve(require('@/conta
 const ArticleDetail = resolve => require.ensure([], () => {resolve(require('@/containers/Article/Children/Detail'))}, 'Article')
 const UserDetail = resolve => require.ensure([], () => {resolve(require('@/containers/User/Detail'))}, 'User')
 
+const ArticleDetailQl = resolve => require.ensure([], () => {resolve(require('@/containers/Article/Children/DeatilGraphql'))}, 'Article')
+
 // 3级路由
 const UserArticle = resolve => require.ensure([], () => {resolve(require('@/containers/User/Detail/Children/Article'))}, 'User')
 const UserComment = resolve => require.ensure([], () => {resolve(require('@/containers/User/Detail/Children/Comment'))}, 'User')
@@ -92,6 +94,17 @@ const main = [
           path: ':id',
           name: 'ArticleDetail',
           component: ArticleDetail
+        }
+      ]
+    },
+    {
+      path: '/articleql',
+      component: Article,
+      children: [
+        {
+          path: ':id',
+          name: 'ArticleDetailQl',
+          component: ArticleDetailQl
         }
       ]
     },

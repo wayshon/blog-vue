@@ -49,7 +49,11 @@ export default {
           confirmButtonText: '确定',
           callback: action => {
             this.$store.state.utils.Interface.alert.show = false;
-            if (this.Interface.alert.code == 401) this.goto({ path: '/auth' })
+            if (this.Interface.alert.code == 401) {
+              localStorage.removeItem("Authorization")
+              console.log('=======================  401')
+              this.goto({ path: '/auth/login' })
+            }
           }
         });
       }
@@ -71,7 +75,7 @@ export default {
       'setUser'
     ]),
     logout() {
-      localStorage.removeItem("jwt")
+      localStorage.removeItem("Authorization")
       this.setUser().then(() => this.goto('/auth/login'));
     }
   },
